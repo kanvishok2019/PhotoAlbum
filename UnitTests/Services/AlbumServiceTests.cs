@@ -24,14 +24,15 @@ namespace UnitTests.Services
         public async Task GetAlbumByUserId_Should_Return_Albums()
         {
             var albums = new List<Album>
-                {new Album {Id = 1, UserId = 1, Title = "Album1"},
+            {new Album {Id = 1, UserId = 1, Title = "Album1"},
                 new Album {Id = 2, UserId = 1, Title = "Album2"},
                 new Album {Id = 3, UserId = 1, Title = "Album3"}
-                };
-            var albumFilterSpecification = new AlbumFilterSpecificationWithPagination(0,3,1);
-            _mockAlbumRepository.Setup(x => x.ListAsync(albumFilterSpecification)).ReturnsAsync(albums);
+            };
+            var albumFilterSpecification = new AlbumFilterSpecificationWithPagination(0, 3, 1);
+            _mockAlbumRepository.Setup(x => x.ListAsync(It.IsAny<AlbumFilterSpecificationWithPagination>())).ReturnsAsync(albums);
             var albumService = new AlbumService(_mockAlbumRepository.Object);
-            Assert.NotEmpty(await albumService.GetAlbumsByUserId(0,3,1));
+            var albumsOfUser = await albumService.GetAlbumsByUserId(0, 3, 1);
+            Assert.NotEmpty(albumsOfUser);
         }
 
         [Fact]

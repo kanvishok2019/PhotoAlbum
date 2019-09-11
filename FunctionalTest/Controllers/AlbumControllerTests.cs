@@ -25,7 +25,7 @@ namespace FunctionalTest.Controllers
         [Fact]
         public async Task GetAll_Album_Should_Return_Albums()
         {
-            var response = await Client.GetAsync("/api/album?userId=1&page=0");
+            var response = await Client.GetAsync("/api/album?userId=1&pageNumber=0");
             response.EnsureSuccessStatusCode();
             var albumViewModel = await response.Content.ReadAsAsync<PaginatedAlbumViewModel>();
             Assert.True(albumViewModel.Albums.Any());
@@ -40,7 +40,7 @@ namespace FunctionalTest.Controllers
         [Fact]
         public async Task Next_PageShould_Be_Enabled_When_Total_Items_More_Than_Page_Size()
         {
-            var response = await Client.GetAsync("/api/album?userId=1&page=0&itemsPerPage=5");
+            var response = await Client.GetAsync("/api/album?userId=1&pageNumber=0&itemsPerPage=5");
             response.EnsureSuccessStatusCode();
             var albumViewModel = await response.Content.ReadAsAsync<PaginatedAlbumViewModel>();
             Assert.True(albumViewModel.Albums.Any());
@@ -56,7 +56,7 @@ namespace FunctionalTest.Controllers
         [Fact]
         public async Task Previous_PageShould_Be_Enabled_When_Current_Page_Is_Greater_Than_Zero()
         {
-            var response = await Client.GetAsync("/api/album?userId=1&page=1&itemsPerPage=5");
+            var response = await Client.GetAsync("/api/album?userId=1&pageNumber=1&itemsPerPage=5");
             response.EnsureSuccessStatusCode();
             var albumViewModel = await response.Content.ReadAsAsync<PaginatedAlbumViewModel>();
             Assert.True(albumViewModel.Albums.Any());
