@@ -1,0 +1,31 @@
+<div fxLayout="row" class="photo-album">
+  <div fxFlex="250px">
+    <mat-card class="album-list">
+      <div>
+        <form>
+          <mat-form-field #userId fxFlex>
+            <input matInput placeholder="Enter User Id to list album"
+                   [formControl]="userIdControl"
+                   (change)="getAlbums()"
+                   type="number">
+            <mat-error *ngIf="userIdControl.invalid">{{getValidationError()}}</mat-error>
+          </mat-form-field>
+        </form>
+      </div>
+      <div *ngIf="paginatedAlbums && paginatedAlbums.albums.length>0">
+        <div>
+          <button mat-button [disabled]="!paginatedAlbums.previous" (click)="onPreviousClick()">Previous</button>
+          <button mat-button [disabled]="!paginatedAlbums.next" (click)="onNextClick()">Next</button>
+        </div>
+        <div *ngFor="let album of paginatedAlbums.albums">
+          <span href="#" (click)="setAlbum(album)" class="album-title">{{album.title}}</span>
+        </div>
+      </div>
+      <div *ngIf="paginatedAlbums && paginatedAlbums.albums.length==0">No Albums Found !.</div>
+    </mat-card>
+  </div>
+  <div fxFlex="auto">
+    <app-album [album]="currentAlbum" [page]="paginatedAlbums.actualPage"></app-album>
+  </div>
+</div>
+

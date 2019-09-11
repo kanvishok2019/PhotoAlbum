@@ -1,0 +1,11 @@
+.album {
+  padding: 24px;
+  height: calc(100vh - 145px);
+  overflow: auto;
+
+  .photo-thumbnail {
+    border: solid 1px gray;
+    padding: 8px;
+    margin:8px;
+  }
+}

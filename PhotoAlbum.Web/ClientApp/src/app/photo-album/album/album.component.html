@@ -1,0 +1,14 @@
+
+<div *ngIf="album" class="album">
+  <h1>
+    Page {{ page + 1 }} Of {{album.title}}
+  </h1>
+  (Click to Open the photo)
+  <div fxLayout="row wrap" fxLayoutAlign="start start">
+    <div *ngFor="let photo of album.photos">
+      <button mat-button (click)="showPhoto(photo.url)" class="photo-thumbnail">
+        <img [src]="photo.thumbnailUrl" />
+      </button>
+    </div>
+  </div>
+</div>
