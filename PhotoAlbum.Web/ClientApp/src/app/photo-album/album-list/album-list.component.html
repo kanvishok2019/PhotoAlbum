@@ -17,8 +17,8 @@
           <button mat-button [disabled]="!paginatedAlbums.previous" (click)="onPreviousClick()">Previous</button>
           <button mat-button [disabled]="!paginatedAlbums.next" (click)="onNextClick()">Next</button>
         </div>
-        <div *ngFor="let album of paginatedAlbums.albums">
-          <span href="#" (click)="setAlbum(album)" class="album-title">{{album.title}}</span>
+        <div *ngFor="let album of paginatedAlbums.albums; let index=index;">
+          <button mat-button href="#" (click)="setAlbum(album)" class="album-title">({{(index + 1) + (paginatedAlbums.actualPage * paginatedAlbums.itemsPerPage) }}) {{album.title}}</button>
         </div>
       </div>
       <div *ngIf="paginatedAlbums && paginatedAlbums.albums.length==0">No Albums Found !.</div>

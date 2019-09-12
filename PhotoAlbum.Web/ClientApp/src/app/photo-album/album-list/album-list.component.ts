@@ -28,7 +28,7 @@ export class AlbumListComponent implements OnInit {
   constructor(private _photoAlbumService: PhotoAlbumService) { }
 
   ngOnInit() {
-    this.getAlbums(this.userId, this.pageNumber, this.itemsPerPage)
+    this.getAlbums(this.userId, this.pageNumber, this.itemsPerPage);
   }
 
   getValidationError() {
